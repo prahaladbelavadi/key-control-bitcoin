@@ -3,11 +3,12 @@ mnemonic = require("./mnemonic.js")
 
 // console.log(mnemonic.keyPair);
 const pubkey = mnemonic.keyPair.publicKey
-console.log(pubkey.toString('hex'));
-bitcoinjs.toWIF(mnemonic.keyPair).toString('hex')
-console.log(toWif().toString('hex'));
+console.log('PublicKey:',pubkey.toString('hex'));
 
+console.log('WIF:',mnemonic.wif);
 
+// bitcoinjs.toWIF(mnemonic.keyPair).toString('hex')
+// console.log(toWif().toString('hex'));
 
 
 // const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey })
