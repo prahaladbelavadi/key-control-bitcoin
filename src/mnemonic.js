@@ -4,7 +4,6 @@ createHash = require("create-hash")
 
 bitcoin = bitcoinjs
 
-function rng () { return Buffer.from('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz') }
 
 const keyPair = bitcoin.ECPair.makeRandom({ rng: rng })
 const wif = keyPair.toWIF();
@@ -21,7 +20,7 @@ const mnemonic = bip39.entropyToMnemonic(rng())
   const wifChecksum = sha256(Buffer.from(wif))
   console.log('wifChecksum:',wifChecksum.toString('hex'));
   console.log('WIF:',wif);
-  
+
 
 exports.mnemonic = mnemonic;
 exports.keyPair = keyPair;

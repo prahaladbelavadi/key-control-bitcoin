@@ -1,34 +1,65 @@
 bitcoinjs = require('bitcoinjs-lib');
-mnemonic = require("./mnemonic.js")
+bip39 = require("bip39")
+createHash = require("create-hash")
+// mnemonic = require("./mnemonic.js")
+bitcoin = bitcoinjs
+
+function rng () { return Buffer.from('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz') }
+const keyPair = bitcoin.ECPair.makeRandom({ rng: rng })
+
+
+const mnemonic = bip39.entropyToMnemonic(rng())
+console.log('Mnemonic:',mnemonic)
+const wif = Buffer.from(keyPair.toWIF());
+console.log('WIF:', wif.toString());
+wifChecksum = checksum(wif)
+console.log('wifChecksum:',wifChecksum.toString('hex'))
+
+
+function checksum(input){
+  return createHash('sha256').update(Buffer.from(input)).digest()
+}
+
 
 // console.log(mnemonic.keyPair);
-const pubkey = mnemonic.keyPair.publicKey
-console.log('PublicKey:',pubkey.toString('hex'));
+const pubkey = keyPair.publicKey
+console.log('PublicKey:', pubkey.toString('hex'));
 
-console.log('WIF:',mnemonic.wif);
 
-console.log('wifChecksum',wifChecksum)
-console.log('Shares Checksum Array:', wif_split_checksum_arr(wif_split))
-console.log('recombine shares checksum:', recomb_checksum)
 
-function combination_status(wifChecksum, recomb_checksum){
-  if (wifChecksum === recomb_checksum){
-    return true
-  }else{
-    false
-  }
-}
+//
+//
+//
+// console.log('Shares Checksum Array:', wif_split_checksum_arr(wif_split))
+// console.log('recombine shares checksum:', recomb_checksum)
+//
+// function combination_status(wifChecksum, recomb_checksum){
+//   if (wifChecksum === recomb_checksum){
+//     return true
+//   }else{
+//     false
+//   }
+// }
+//
+// function shareMatch(share, wif_split_checksum_arr){
+//   shareChecksum = sha256(share)
+//   for (var i=0; i <= wif_split_checksum_arr.length(); i++){
+//     if (shareChecksum === i){
+//       return true
+//     }else {
+//       return false
+//     }
+//   }
+// }
 
-function shareMatch(share){
-  shareChecksum = sha256(share)
-  for (var i=0, i < wif_split_checksum_arr.length(), i++){
-    if (shareChecksum === i){
-      return true
-    }else {
-      return false
-    }
-  }
-}
+
+
+
+
+
+
+
+
 
 // bitcoinjs.toWIF(mnemonic.keyPair).toString('hex')
 // console.log(toWif().toString('hex'));
