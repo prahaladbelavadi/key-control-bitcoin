@@ -26,30 +26,30 @@ console.log('PublicKey:', pubkey.toString('hex'));
 
 
 
-console.log('Shares Checksum Array:', wif_split_checksum_arr(wif_split))
-console.log('recombine shares checksum:', recomb_checksum)
-
-function combination_status(wifChecksum, recomb_checksum){
-  if (wifChecksum === recomb_checksum){
-    return true
-  }else{
-    false
-  }
-}
-
-function shareMatch(share, wif_split_checksum_arr){
-  shareChecksum = sha256(share)
-  for (var i=0; i <= wif_split_checksum_arr.length(); i++){
-    if (shareChecksum === i){
-      return true
-    }else {
-      return false
-    }
-  }
-}
-
-
-
+// console.log('Shares Checksum Array:', wif_split_checksum_arr(wif_split))
+// console.log('recombine shares checksum:', recomb_checksum)
+//
+// function combination_status(wifChecksum, recomb_checksum){
+//   if (wifChecksum === recomb_checksum){
+//     return true
+//   }else{
+//     false
+//   }
+// }
+//
+// function shareMatch(share, wif_split_checksum_arr){
+//   shareChecksum = sha256(share)
+//   for (var i=0; i <= wif_split_checksum_arr.length(); i++){
+//     if (shareChecksum === i){
+//       return true
+//     }else {
+//       return false
+//     }
+//   }
+// }
+//
+//
+//
 
 
 
