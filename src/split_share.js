@@ -20,13 +20,13 @@ console.log(shares_arr);
 function share_checksum(share_arr){
   var checksumArray = [];
   for (var i=0 ; i < shares_arr.length ; i++){
-    check = checksum(Buffer.from(i));
-    checksumArray.push(checks);
+    checks = checksum(share_arr[i]);//checksum(bufferi);
+    checksumArray.push(checks.toString('hex'));
   };
   return checksumArray;
 }
 
-share_checksum(shares_arr)
+console.log(share_checksum(shares_arr));
 
 var reconstruct = secrets.combine(shares_arr.splice(0,3))
 console.log('reconstructed key', reconstruct);
